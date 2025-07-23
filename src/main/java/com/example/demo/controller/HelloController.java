@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,5 +29,14 @@ public class HelloController {
     public String hello2(@RequestParam("name") String name) {
         // リクエストパラメータから取得した名前を用いて、「こんにちは、○○さん」という文字列を返す
         return "こんにちは、 "  + name + "さん";
+    }
+    // GETリクエストを受け取ることを指定する。また、メソッドがマッピングするURLの定義する。
+    @GetMapping("/hello3/{name}")
+    // 返される文字列をHTTPレスポンスとすることを示す
+    @ResponseBody
+    // @PathVariable: URLパラメーターからデータを受け取って変数にセット(バインド)する
+    public String hello3(@PathVariable("name") String name) {
+        // URLパラメータから取得した名前を用いて、「こんにちは、○○さん」という文字列を返す
+        return "こんにちは、 "  + name + "さん"; 
     }
 }
