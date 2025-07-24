@@ -62,4 +62,16 @@ public class HelloController {
         // 設定したモデルデータとViewを返す
         return mv;
     }
+    // POSTリクエストを受け取ることを指定する。また、メソッドがマッピングするURLの定義する。
+    @PostMapping("/hello6")
+    // @RequestParam: リクエストパラメーターから受け取ったデータを変数にセット(バインド)する
+    // ModelAndView: ビュー名とモデルデータを保持するオブジェクト
+    public ModelAndView hello6(@RequestParam("name") String name, ModelAndView mv) {
+        // 表示するHtmlの設定
+        mv.setViewName("hello");
+        // 「name」という名前でリクエストパラメーターの値を受け渡す
+        mv.addObject("name", name);
+        // 設定したモデルデータとViewを返す
+        return mv;
+    }
 }
