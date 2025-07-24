@@ -2,12 +2,15 @@ package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.example.demo.form.NameData;
 
 // ControllerクラスがマッピングするURLを定義する
 @RequestMapping("/")
@@ -71,6 +74,18 @@ public class HelloController {
         mv.setViewName("hello");
         // 「name」という名前でリクエストパラメーターの値を受け渡す
         mv.addObject("name", name);
+        // 設定したモデルデータとViewを返す
+        return mv;
+    }
+    // POSTリクエストを受け取ることを指定する。また、メソッドがマッピングするURLの定義する。
+    @PostMapping("/hello7")
+    // @ModelAttribute: リクエストパラメーターから受け取ったデータからNameDataオブジェクトを作成する
+    // ModelAndView: ビュー名とモデルデータを保持するオブジェクト
+    public ModelAndView hello7(@ModelAttribute NameData nameData, ModelAndView mv) {
+        // 表示するHtmlの設定
+        mv.setViewName("hello");
+        // 「name」という名前でリクエストパラメーターの値を受け渡す
+        mv.addObject("NameData", nameData);
         // 設定したモデルデータとViewを返す
         return mv;
     }
