@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!--// Thymeleafテンプレートエンジンを使用していることを示す-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Hello</title>
+</head>
+<body>
+    <h1>Hello</h1>
+    <table>
+        <tr>
+            <th>名前</th>
+        </tr>
+        <tr>
+            <!--// th:text - name変数にアクセスし表示-->
+            <td th:text="${name}"></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 // ControllerクラスがマッピングするURLを定義する
 @RequestMapping("/")
@@ -48,5 +49,17 @@ public class HelloController {
     public String hello4(@RequestParam("name") String name) {
         // リクエストパラメータから取得した名前を用いて、「こんにちは、○○さん」という文字列を返す
         return "こんにちは、 "  + name + "さん"; 
+    }
+    // GETリクエストを受け取ることを指定する。また、メソッドがマッピングするURLの定義する。
+    @GetMapping("/hello5")
+    // @RequestParam: リクエストパラメーターから受け取ったデータを変数にセット(バインド)する
+    // ModelAndView: ビュー名とモデルデータを保持するオブジェクト
+    public ModelAndView hello5(@RequestParam("name") String name, ModelAndView mv) {
+        // 表示するHtmlの設定
+        mv.setViewName("hello");
+        // 「name」という名前でリクエストパラメーターの値を受け渡す
+        mv.addObject("name", name);
+        // 設定したモデルデータとViewを返す
+        return mv;
     }
 }
